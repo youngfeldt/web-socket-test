@@ -1,4 +1,5 @@
 #!/bin/sh
+
 npm install ws
 
 cat << EOS > server.js
@@ -14,4 +15,9 @@ var WebSocketServer = require('ws').Server
  });
 EOS
 
-node server.js
+# Start websocket
+node server.js &
+
+#Start health-check
+echo "STARTING HEALTH CHECK"
+python3 health_check.py
